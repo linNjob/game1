@@ -1,0 +1,25 @@
+body {
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#choice {
+    width: 240px;
+    height: 240px;
+}
+
+#my-choice {
+    width: 240px;
+    height: 240px;
+}
+
+#choices {
+    width: 240px;
+    height: 80px;
+    margin: 0 auto;
+}
+
+#choices > img {
+    width: 80px;
+    height: 80px;
+}
