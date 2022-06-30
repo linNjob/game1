@@ -14,8 +14,15 @@ window.onload = function() {
         choice.src = choices[i] + ".png";
         // 新增點擊事件
         choice.addEventListener('click', selectChoice);
+
+        
         document.getElementById("choices").append(choice)
     }
+    document.addEventListener("click", function test(e){
+        console.log(e.target.id)
+        let imgId = e.target.id;
+        // imgId == r ? XXX : 
+    })
 }
 
 function selectChoice() {
