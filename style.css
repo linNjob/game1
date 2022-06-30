@@ -11,12 +11,14 @@ body {
 #my-choice {
     width: 240px;
     height: 240px;
+    pointer-events: none;
 }
 
 #choices {
     width: 240px;
     height: 80px;
     margin: 0 auto;
+    display: flex;
 }
 
 #choices > img {
