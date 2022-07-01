@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <h1 id="score">0</h1>
-    <img id="choice" >
-    <br>
-    <img id="my-choice" >
+    <img id="choice" draggable="false" />
+    <br />
+    <h1>殭屍的殭屍的殭屍猜</h1>
+    <div class="result">
+      <h1 id="result"></h1>
+      <img id="my-choice" draggable="false" />
+      <h1 id="timer"></h1>
+    </div>
     <div id="choices">
-        <img id="r">
-        <img id="p">
-        <img id="s">
+      <img id="r" src="./r.png" draggable="false" />
+      <img id="p" src="./p.png" draggable="false" />
+      <img id="s" src="./s.png" draggable="false" />
     </div>
     <h1 id="my-score">0</h1>
-
-</body>
-<script src="./index.js"></script>
-
+  </body>
+  <script src="./index.js"></script>
 </html>

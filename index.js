@@ -1,110 +1,104 @@
-// var you;
-// var yourScore = 0;
-// var opponent;
-// var opponentScore = 0;
-
-// var choices = ["r", "p", "s"];
-
-// window.onload = function () {
-//   for (let i = 0; i < 3; i++) {
-//     // 新增<img id="rock" src="r.png">
-//     let choice = document.createElement("img");
-//     choice.id = choices[i];
-//     choice.src = choices[i] + ".png";
-//     // 新增點擊事件
-//     choice.addEventListener("click", selectChoice);
-//     document.getElementById("choices").append(choice);
-//   }
-//   document.addEventListener("click", function test(e) {
-//     // console.log(e.target);
-//     let imgId = e.target;
-//     // console.log(imgId);
-//     if (imgId == r) {
-//       imgId.src = "/rock.png";
-//     } else if (imgId == p) {
-//       imgId.src = "/cloth.png";
-//     } else if (imgId == s) {
-//       imgId.src = "/shears.png";
-//     }
-//   });
-// };
-
-// function selectChoice() {
-//   you = this.id;
-//   document.getElementById("my-choice").src = you + ".png";
-
-//   // 新增電腦隨機出
-
-//   opponent = choices[Math.floor(Math.random() * 3)];
-//   console.log(opponent);
-//   document.getElementById("choice").src = opponent + ".png";
-
-//   if (you == opponent) {
-//     yourScore += 0;
-//     opponentScore += 0;
-//   } else {
-//     if (you == "r") {
-//       if (opponent == "s") {
-//         yourScore += 1;
-//       } else if ((opponent = "p")) {
-//         opponentScore += 1;
-//       }
-//     } else if (you == "s") {
-//       if (opponent == "p") {
-//         yourScore += 1;
-//       } else if ((opponent = "r")) {
-//         opponentScore += 1;
-//       }
-//     } else if (you == "p") {
-//       if (opponent == "r") {
-//         yourScore += 1;
-//       } else if ((opponent = "s")) {
-//         opponentScore += 1;
-//       }
-//     }
-//   }
-//   document.getElementById("my-score").innerText = yourScore;
-//   document.getElementById("score").innerText = opponentScore;
-// }
-
 // 對不起我沒有邏輯
 
-var r = document.getElementById("r")
-var p = document.getElementById("p")
-var s = document.getElementById("s")
+var r = document.getElementById("r");
+var p = document.getElementById("p");
+var s = document.getElementById("s");
 var you;
 var opponent;
 var choices = ["r", "p", "s"];
+var userScore = 0;
+var computerScore = 0;
+var timer;
+var num = 6;
+var timerbox = document.getElementById("timer");
+var stoptimerBox = document.getElementById("choices");
 
 window.onload = function () {
-  for(var i = 0; i < 3; i++) {
-    r.src = "./r.png"
-    p.src = "./p.png"
-    s.src = "./s.png"
-  }
+  // 計時器
+  clearInterval(timer);
+  timer = setInterval(function () {
+    num -= 1;
+    if (num >= 0) {
+      timerbox.innerText = "出拳時間還有" + num + " 秒";
+    } else {
+      document.getElementById("result").innerText = "失敗 超時了";
+      timer = clearInterval(timer);
+      document.getElementById("choices").style.pointerEvents = "none";
+    }
+  }, 1000);
+
+  // 選擇出拳後暫停計時
+
+  stoptimerBox.onclick = function () {
+    clearInterval(timer);
+  };
+
+  //  點擊改變照片
+
   document.addEventListener("click", function changeImage(e) {
-    // console.log(e.target);
     let imgId = e.target;
-    // console.log(imgId);
+    //   console.log(e.target);
     if (imgId == r) {
       imgId.src = "/rock.png";
-      document.getElementById('my-choice').src="./r.png"
+      document.getElementById("my-choice").src = "./r.png";
       add();
     } else if (imgId == p) {
       imgId.src = "/cloth.png";
-      document.getElementById('my-choice').src="./p.png"
+      document.getElementById("my-choice").src = "./p.png";
       add();
     } else if (imgId == s) {
       imgId.src = "/shears.png";
-      document.getElementById('my-choice').src="./s.png"
+      document.getElementById("my-choice").src = "./s.png";
       add();
     }
+    document.removeEventListener("click", changeImage);
+
+    // 電腦出拳 & 結果
+
+    function add() {
+      opponent = choices[Math.floor(Math.random() * 3)];
+      document.getElementById("choice").src = opponent + ".png";
+
+      // 判斷誰勝利
+      if (imgId.id == opponent) {
+        userScore += 0;
+        computerScore += 0;
+        document.getElementById("result").innerText = "平手 再來再來";
+      }
+      // 出石頭
+      else {
+        if (imgId.id == "r") {
+          if (opponent == "s") {
+            userScore += 1;
+            document.getElementById("result").innerText = "勝利 妳好棒棒";
+          } else if (opponent == "p") {
+            computerScore += 1;
+            document.getElementById("result").innerText = "失敗 底子不行";
+          }
+        }
+        // 出剪刀
+        else if (imgId.id == "s") {
+          if (opponent == "p") {
+            userScore += 1;
+            document.getElementById("result").innerText = "勝利 妳好棒棒";
+          } else if (opponent == "r") {
+            computerScore += 1;
+            document.getElementById("result").innerText = "失敗 底子不行";
+          }
+        }
+        // 出布
+        else if (imgId.id == "p") {
+          if (opponent == "r") {
+            userScore += 1;
+            document.getElementById("result").innerText = "勝利 妳好棒棒";
+          } else if (opponent == "s") {
+            computerScore += 1;
+            document.getElementById("result").innerText = "失敗 底子不行";
+          }
+        }
+      }
+      document.getElementById("my-score").innerText = userScore;
+      document.getElementById("score").innerText = computerScore;
+    }
   });
-}
-
-function add () {
-  opponent = choices[Math.floor(Math.random() * 3)];
-  document.getElementById("choice").src = opponent + ".png";
-}
-
-
+};

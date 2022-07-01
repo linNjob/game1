@@ -1,27 +1,37 @@
 body {
-    text-align: center;
-    box-sizing: border-box;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 #choice {
-    width: 240px;
-    height: 240px;
+  width: 240px;
+  height: 240px;
 }
 
 #my-choice {
-    width: 240px;
-    height: 240px;
-    pointer-events: none;
+  width: 240px;
+  height: 240px;
 }
 
 #choices {
-    width: 240px;
-    height: 80px;
-    margin: 0 auto;
-    display: flex;
+  width: 240px;
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
 }
 
 #choices > img {
-    width: 80px;
-    height: 80px;
+  width: 80px;
+  height: 80px;
+}
+
+.result {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
