@@ -9,7 +9,7 @@ var choices = ["r", "p", "s"];
 var userScore = 0;
 var computerScore = 0;
 var timer;
-var num = 6;
+var num = 10;
 var timerbox = document.getElementById("timer");
 var stoptimerBox = document.getElementById("choices");
 

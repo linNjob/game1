@@ -23,7 +23,7 @@
         count -= 1;
         // 當 count = 0 時跳轉頁面
         if (count == 0) {
-          location.href = "/index.html";
+          document.getElementById("timeBox").style.display = "none";
         }
         // 設定每秒執行1次
         setTimeout("countDown()", 1000);
