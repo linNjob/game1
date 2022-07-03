@@ -1,6 +1,7 @@
-var t = 6;
+var t = 4;
 var time = document.getElementById("timeBox");
-var rps = document.getElementById("rpsContainer");
+var rps = document.getElementById("rpsWrapper");
+var npsUserWins = document.getElementById("npsUserWins")
 
 function fun() {
   t--;

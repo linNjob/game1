@@ -12,10 +12,33 @@ body {
   height: 240px;
 }
 
+#attack {
+  width: 240px;
+  height: 240px;
+}
+
+#defence {
+  width: 240px;
+  height: 240px;
+}
+
+
 #my-choice {
   width: 240px;
   height: 240px;
 }
+
+#myChoice {
+  width: 240px;
+  height: 240px;
+}
+
+#mySecondChoice {
+  width: 240px;
+  height: 240px;
+}
+
+
 
 #choices {
   width: 400px;
@@ -24,7 +47,31 @@ body {
   display: flex;
 }
 
+#second {
+  width: 400px;
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+}
+
+#third {
+  width: 400px;
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+}
+
 #choices > img {
+  width: 80px;
+  height: 80px;
+}
+
+#second > img {
+  width: 80px;
+  height: 80px;
+}
+
+#third > img {
   width: 80px;
   height: 80px;
 }

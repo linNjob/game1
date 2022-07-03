@@ -1,17 +1,17 @@
 // 對不起我沒有邏輯
 
-var r = document.getElementById("r");
-var p = document.getElementById("p");
-var s = document.getElementById("s");
 var you;
 var opponent;
 var choices = ["r", "p", "s"];
+var allChoices = ["r", "p", "s", "a", "d"];
 var userScore = 0;
 var computerScore = 0;
 var timer;
-var num = 10;
+var num = 9;
+var finalTimerBox = document.getElementById("finalTimer")
 var timerbox = document.getElementById("timer");
 var stoptimerBox = document.getElementById("choices");
+
 
 window.onload = function () {
   // 計時器
@@ -20,12 +20,20 @@ window.onload = function () {
     num -= 1;
     if (num >= 0) {
       timerbox.innerText = "出拳時間還有" + num + " 秒";
+      finalTimerBox.innerText  = "出拳時間還有" + num + " 秒";
     } else {
       document.getElementById("result").innerText = "失敗 超時了";
+      document.getElementById("finalResult").innerText = "失敗 超時了"
       timer = clearInterval(timer);
       document.getElementById("choices").style.pointerEvents = "none";
+      document.getElementById("second").style.pointerEvents = "none";
+      loses();
+      setTimeout("document.getElementById('rpsWrapper').style.display='none' ", 5000)
+      setTimeout("document.getElementById('rpsUserLoses').style.display='block' ", 5000)  
     }
   }, 1000);
+
+  
 
   // 選擇出拳後暫停計時
 
@@ -37,7 +45,6 @@ window.onload = function () {
 
   document.addEventListener("click", function changeImage(e) {
     let imgId = e.target;
-    //   console.log(e.target);
     if (imgId == r) {
       imgId.src = "/rock.png";
       document.getElementById("my-choice").src = "./r.png";
@@ -51,54 +58,137 @@ window.onload = function () {
       document.getElementById("my-choice").src = "./s.png";
       add();
     }
+    else if (imgId == a) {
+      document.getElementById("my-choice").src = "./a.png";
+      add();
+    }else if (imgId == d) {
+      document.getElementById("my-choice").src = "./d.png";
+      add();
+    }
     document.removeEventListener("click", changeImage);
 
     // 電腦出拳 & 結果
 
     function add() {
+
       opponent = choices[Math.floor(Math.random() * 3)];
       document.getElementById("choice").src = opponent + ".png";
 
       // 判斷誰勝利
       if (imgId.id == opponent) {
-        userScore += 0;
-        computerScore += 0;
         document.getElementById("result").innerText = "平手 再來再來";
+
       }
       // 出石頭
       else {
         if (imgId.id == "r") {
           if (opponent == "s") {
-            userScore += 1;
             document.getElementById("result").innerText = "勝利 妳好棒棒";
+            winners();
           } else if (opponent == "p") {
-            computerScore += 1;
             document.getElementById("result").innerText = "失敗 底子不行";
+            loses();
           }
+
         }
         // 出剪刀
         else if (imgId.id == "s") {
           if (opponent == "p") {
-            userScore += 1;
             document.getElementById("result").innerText = "勝利 妳好棒棒";
+            winners();
           } else if (opponent == "r") {
-            computerScore += 1;
             document.getElementById("result").innerText = "失敗 底子不行";
+            loses();
           }
+
         }
         // 出布
         else if (imgId.id == "p") {
           if (opponent == "r") {
-            userScore += 1;
             document.getElementById("result").innerText = "勝利 妳好棒棒";
+            winners();
           } else if (opponent == "s") {
-            computerScore += 1;
             document.getElementById("result").innerText = "失敗 底子不行";
+            loses();
           }
         }
+        // 出進攻 || 防守
+        else if (imgId.id == "a"  ) {
+          document.getElementById("result").innerText = "失敗 按到進攻";
+          loses();
+        }  else if (imgId.id == "d"  ) {
+          document.getElementById("result").innerText = "失敗 按到防守";
+          loses();
+        }      
       }
-      document.getElementById("my-score").innerText = userScore;
-      document.getElementById("score").innerText = computerScore;
     }
   });
-};
+
+    // user win or lose part2
+
+    function winners (){
+      setTimeout("document.getElementById('rpsWrapper').style.display='none' ", 5000)
+      setTimeout("document.getElementById('rpsUserWins').style.display='block' ", 5000)        
+    document.getElementById("second").addEventListener("click", function change (e) {
+        document.getElementById("attack").src = "./shame.png"
+        let item = e.target
+        if ( item.id == "r1") {
+          document.getElementById("myChoice").src = "./r.png"
+          document.getElementById("finalResult").innerText = "loser!"
+        } else if (item.id == "p1") {
+          document.getElementById("myChoice").src = "./p.png"
+          document.getElementById("finalResult").innerText = "loser!"
+        } else if (item.id == "s1") {
+          document.getElementById("myChoice").src = "./s.png"
+          document.getElementById("finalResult").innerText = "loser!"
+        } else if (item.id == "a1") {
+          document.getElementById("myChoice").src = "./a.png"
+          document.getElementById("finalResult").innerText = "ur good!"
+          userScore += 1
+          document.getElementById("myScore").innerHTML = userScore
+        } else if (item.id == "d1") {
+          document.getElementById("myChoice").src = "./d.png"
+          document.getElementById("finalResult").innerText = "loser!"
+        }
+        document.getElementById("second").removeEventListener("click", change)
+      })
+    }
+
+
+    function loses (){
+      setTimeout("document.getElementById('rpsWrapper').style.display='none' ", 5000)
+      setTimeout("document.getElementById('rpsUserLoses').style.display='block' ", 5000)        
+      document.getElementById("third").addEventListener("click", function changeLoses (e) {
+          document.getElementById("defence").src = "./hands.png"
+          let i = e.target
+          if ( i.id == "r2") {
+            document.getElementById("mySecondChoice").src = "./r.png"
+            document.getElementById("finalResultSecond").innerText= "loser"
+          } else if (i.id == "p2") {
+            document.getElementById("mySecondChoice").src = "./p.png"
+            document.getElementById("finalResultSecond").innerText= "loser"
+          } else if (i.id == "s2") {
+            document.getElementById("mySecondChoice").src = "./s.png"
+            document.getElementById("finalResultSecond").innerText= "loser"
+          } else if (i.id == "a2") {
+            document.getElementById("mySecondChoice").src = "./a.png"
+            document.getElementById("finalResultSecond").innerText= "loser"
+          } else if (i.id == "d2") {
+            document.getElementById("mySecondChoice").src = "./d.png"
+            document.getElementById("finalResultSecond").innerText= "loser"
+            document.getElementById("finalResultSecond").innerText= "ur good!"
+            userScore += 1
+            document.getElementById("loseMyScore").innerHTML = userScore
+          }
+          document.getElementById("third").removeEventListener("click", changeLoses)
+        })
+      }
+}
+
+  
+
+
+
+
+
+
