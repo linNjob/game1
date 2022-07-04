@@ -12,7 +12,7 @@
     <!-- 倒數 -->
     <div id="timeBox"></div>
     <!-- 猜拳part1 -->
-    <div  id="rpsContainer">
+    <div id="rpsContainer">
       <div style="display: none" id="rpsWrapper">
         <img id="choice" draggable="false" />
         <br />
@@ -31,7 +31,7 @@
         </div>
       </div>
       <!-- 猜拳part2 -->
-      <div id="rpsUserWins" style="display: none;">
+      <div id="rpsUserWins" style="display: none">
         <h1>hhihihihi</h1>
         <img id="attack" draggable="false" />
         <br />
@@ -51,7 +51,7 @@
         <h1 id="myScore">0</h1>
       </div>
       <!-- 猜拳part3 -->
-      <div id="rpsUserLoses" style="display: none;">
+      <div id="rpsUserLoses" style="display: none">
         <h1>nononono</h1>
         <img id="defence" draggable="false" />
         <br />
@@ -59,7 +59,7 @@
         <div class="result">
           <h1 id="finalResultSecond"></h1>
           <img id="mySecondChoice" draggable="false" />
-          <h1 id="finalTimer"></h1>
+          <h1 id="finalTimerSecond"></h1>
         </div>
         <div id="third">
           <img id="r2" src="./r.png" draggable="false" />
@@ -70,7 +70,25 @@
         </div>
         <h1 id="loseMyScore">0</h1>
       </div>
-      
+      <!-- 猜拳part4 -->
+      <div id="rpsUserDraw" style="display: none">
+        <h1>drawdrawdrawdraw</h1>
+        <img id="draw" draggable="false" src="./draw.png" />
+        <br />
+        <h1>殭屍的咚咚 殭屍猜</h1>
+        <div class="result">
+          <h1 id="finalResultDraw"></h1>
+          <img id="DrawChoice" draggable="false" src="./draw.png" />
+          <h1 id="finalTimerDraw"></h1>
+        </div>
+        <div id="fourth">
+          <img id="r3" src="./r.png" draggable="false" />
+          <img id="p3" src="./p.png" draggable="false" />
+          <img id="s3" src="./s.png" draggable="false" />
+          <img id="a3" src="./a.png" draggable="false" />
+          <img id="d3" src="./d.png" draggable="false" />
+        </div>
+      </div>
     </div>
   </body>
   <script src="./timer.js"></script>
