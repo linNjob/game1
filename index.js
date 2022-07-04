@@ -10,6 +10,7 @@ var timer;
 var finalTimer;
 var num = 6;
 var count = 6;
+var time = document.getElementById("timeBox")
 var timerbox = document.getElementById("timer");
 var finalTimerBox = document.getElementById("finalTimer");
 var finalTimerBoxSecond = document.getElementById("finalTimerSecond");
@@ -21,6 +22,12 @@ var stoptimerBoxLose = document.getElementById("third");
 var rpsWrapper = document.getElementById("rpsWrapper");
 var rpsUserLoses = document.getElementById("rpsUserLoses");
 var rpsUserWins = document.getElementById("rpsUserWins");
+
+
+
+
+
+
 
 // 第一關計時器
 clearInterval(timer);
@@ -186,6 +193,10 @@ function winners() {
         document.getElementById("finalResult").innerText = "ur good!";
         userScore += 1;
         document.getElementById("myScore").innerHTML = userScore;
+        rpsUserWins.style.display = "none";
+        time.style.display = "block"
+        num = 6;
+        setInterval("fun()", 1000);
       } else if (item.id == "d1") {
         document.getElementById("myChoice").src = "./d.png";
         document.getElementById("finalResult").innerText = "loser!";
